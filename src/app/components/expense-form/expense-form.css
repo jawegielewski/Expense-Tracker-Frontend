@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  margin-left: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.submission-message {
+  margin: 1rem 0 0;
+  font-weight: 600;
+}
+
+.alert-danger,
+.submission-message.error,
+.error-message {
+  color: #FF0000 !important;
+}
+
+.submission-message.success {
+  color: #15803d;
+}

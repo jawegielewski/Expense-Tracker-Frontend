@@ -1,0 +1,28 @@
+/* Center the Not Found layout perfectly */
+.container {
+  display: flex;
+  flex-direction: column;   /* Stacks the text and image vertically */
+  justify-content: center;  /* Centers content vertically */
+  align-items: center;      /* Centers content horizontally */
+  text-align: center;
+
+  /* Forces the container to take up all available middle screen space */
+  min-height: calc(100vh - 200px);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Optional styling to keep your error GIF responsive */
+.container img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;         /* Adds clean breathing room between text and image */
+  border-radius: 8px;       /* Gives the GIF nice soft rounded corners */
+}
+
+.container p {
+  font-size: 24px;
+  color: #333333;
+  margin: 0;
+}

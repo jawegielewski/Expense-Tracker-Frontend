@@ -1,0 +1,57 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit(expenseForm)" #expenseForm="ngForm">
+
+      <!-- Name Field -->
+      <div class="form-group mb-3">
+        <label for="name">Name</label>
+        <input type="text"
+               [(ngModel)]="expense.name"
+               (ngModelChange)="clearFieldError('name')"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Enter expense name"
+               required
+               #name="ngModel">
+
+        @if (fieldErrors()['name']) {
+          <div class="alert alert-danger mt-1">{{ fieldErrors()['name'] }}</div>
+        } @else if (name.invalid && (name.dirty || name.touched)) {
+          <div class="alert alert-danger mt-1">Name is required</div>
+        }
+      </div>
+
+      <!-- Price Field -->
+      <div class="form-group mb-3">
+        <label for="price">Price</label>
+        <input type="number"
+               [(ngModel)]="expense.price"
+               (ngModelChange)="clearFieldError('price')"
+               class="form-control"
+               id="price"
+               name="price"
+               placeholder="Enter price"
+               required
+               #price="ngModel">
+
+        @if (fieldErrors()['price']) {
+          <div class="alert alert-danger mt-1">{{ fieldErrors()['price'] }}</div>
+        } @else if (price.invalid && (price.dirty || price.touched)) {
+          <div class="alert alert-danger mt-1">Price is required</div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-info">
+        Submit
+      </button>
+    </form>
+
+    <!-- Submission Feedback -->
+    @if (isSuccess()) {
+      <p class="submission-message success mt-3" role="status">Expense added successfully.</p>
+    } @else if (generalError()) {
+      <p class="submission-message error mt-3" role="alert">{{ generalError() }}</p>
+    }
+  </div>
+</div>
