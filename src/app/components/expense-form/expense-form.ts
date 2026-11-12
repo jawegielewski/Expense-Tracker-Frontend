@@ -14,6 +14,7 @@ export class ExpenseFormComponent {
   private expenseService = inject(ExpenseService);
 
   expense = new Expense();
+  dateOfPurchase = '';
   fieldErrors = signal<Record<string, string>>({});
   generalError = signal('');
   isSuccess = signal(false);
@@ -23,11 +24,14 @@ export class ExpenseFormComponent {
     this.generalError.set('');
     this.isSuccess.set(false);
 
+    this.expense.dateMillis = new Date(this.dateOfPurchase).getTime();
+
     this.expenseService.save(this.expense).subscribe({
       next: () => {
         this.isSuccess.set(true);
         form.resetForm();
         this.expense = new Expense();
+        this.dateOfPurchase = '';
       },
       error: (err: HttpErrorResponse) => {
         console.error('Spring Boot validation response:', err.status, err.error);

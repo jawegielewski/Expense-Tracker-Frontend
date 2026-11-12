@@ -1,0 +1,30 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h1>Best gas station</h1>
+    <form (ngSubmit)="findBestGasStation()">
+      <div class="form-group">
+        <label for="city">City</label>
+        <input
+          id="city"
+          name="city"
+          type="text"
+          class="form-control"
+          [(ngModel)]="city"
+          required
+          autocomplete="address-level2"
+          placeholder="Enter a city"
+        >
+      </div>
+      <button class="btn btn-primary mt-3" type="submit" [disabled]="!city.trim() || isLoading">
+        {{ isLoading ? 'Searching...' : 'Find best gas station' }}
+      </button>
+    </form>
+
+    <p *ngIf="isLoading" class="search-status" role="status">Searching for the best gas station in {{ city }}...</p>
+    <section *ngIf="result" class="search-result" aria-live="polite">
+      <h2>Recommendation</h2>
+      <p>{{ result }}</p>
+    </section>
+    <p *ngIf="errorMessage" class="search-error" role="alert">{{ errorMessage }}</p>
+  </div>
+</div>

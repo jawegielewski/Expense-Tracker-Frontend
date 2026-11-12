@@ -54,6 +54,17 @@ describe('App', () => {
       { text: 'Home', href: '/home' },
       { text: 'Get expenses', href: '/get-expenses' },
       { text: 'Save expense', href: '/save-expense' },
+      { text: 'Best gas station', href: '/best-gas-station' },
     ]);
+  });
+
+  it('should render the best gas station component at its route', async () => {
+    const fixture = TestBed.createComponent(App);
+    await TestBed.inject(Router).navigateByUrl('/best-gas-station');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('app-best-gas-station h1')?.textContent).toBe('Best gas station');
+    expect(fixture.nativeElement.querySelector('app-best-gas-station label')?.textContent.trim()).toBe('City');
+    expect(fixture.nativeElement.querySelector('app-best-gas-station input#city')?.type).toBe('text');
   });
 });

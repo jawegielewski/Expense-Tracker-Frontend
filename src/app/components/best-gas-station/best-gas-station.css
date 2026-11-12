@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  margin: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.search-status,
+.search-result,
+.search-error {
+  margin-top: 1rem;
+}
+
+.search-result {
+  white-space: pre-line;
+}
+
+.search-result h2 {
+  font-size: 1.25rem;
+}
+
+.search-error {
+  color: #b42318;
+}

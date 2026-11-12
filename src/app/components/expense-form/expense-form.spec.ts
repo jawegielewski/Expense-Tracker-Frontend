@@ -29,9 +29,12 @@ describe('ExpenseForm', () => {
   it('should display a success message when the expense is saved', () => {
     const httpTestingController = TestBed.inject(HttpTestingController);
     const form = fixture.debugElement.query(By.directive(NgForm)).injector.get(NgForm);
+    component.dateOfPurchase = '2025-01-15';
 
     component.onSubmit(form);
-    httpTestingController.expectOne('http://localhost:8080/save-expense').flush(
+    const request = httpTestingController.expectOne('http://localhost:8080/save-expense');
+    expect(request.request.body.dateMillis).toBe(Date.UTC(2025, 0, 15));
+    request.flush(
       'Expense saved successfully',
       { status: 200, statusText: 'OK' },
     );
@@ -46,7 +49,7 @@ describe('ExpenseForm', () => {
     const backendMessages = [
       { field: 'name', defaultMessage: 'Name must not be blank' },
       { field: 'price', defaultMessage: 'Price must be greater than zero' },
-      { field: 'date', defaultMessage: 'Date is required' },
+      { field: 'dateMillis', defaultMessage: 'Date is required' },
     ];
 
     const form = fixture.debugElement.query(By.directive(NgForm)).injector.get(NgForm);

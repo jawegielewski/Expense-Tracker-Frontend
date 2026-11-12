@@ -42,6 +42,25 @@
         }
       </div>
 
+      <!-- Date of Purchase Field -->
+      <div class="form-group mb-3">
+        <label for="dateMillis">Date of purchase</label>
+        <input type="date"
+               [(ngModel)]="dateOfPurchase"
+               (ngModelChange)="clearFieldError('dateMillis')"
+               class="form-control"
+               id="dateMillis"
+               name="dateMillis"
+               required
+               #dateMillis="ngModel">
+
+        @if (fieldErrors()['dateMillis']) {
+          <div class="alert alert-danger mt-1">{{ fieldErrors()['dateMillis'] }}</div>
+        } @else if (dateMillis.invalid && (dateMillis.dirty || dateMillis.touched)) {
+          <div class="alert alert-danger mt-1">Date of purchase is required</div>
+        }
+      </div>
+
       <button type="submit" class="btn btn-info">
         Submit
       </button>

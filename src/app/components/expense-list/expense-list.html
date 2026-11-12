@@ -6,6 +6,7 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
+        <th scope="col">Date</th>
       </tr>
       </thead>
       <tbody>
@@ -13,6 +14,7 @@
         <td>{{ expense.id }}</td>
         <td>{{ expense.name }}</td>
         <td>{{ expense.price }}</td>
+        <td>{{ expense.dateMillis | date:'mediumDate':'UTC' }}</td>
       </tr>
       </tbody>
     </table>

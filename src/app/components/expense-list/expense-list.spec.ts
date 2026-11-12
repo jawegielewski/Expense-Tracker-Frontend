@@ -25,4 +25,16 @@ describe('ExpenseList', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the purchase date instead of its millisecond value', () => {
+    component.expenses = [{
+      id: '1',
+      name: 'Coffee',
+      price: 3,
+      dateMillis: Date.UTC(2025, 0, 15),
+    }];
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('tbody td:last-child').textContent.trim()).toBe('Jan 15, 2025');
+  });
 });
